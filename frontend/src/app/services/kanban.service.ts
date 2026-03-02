@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 export interface Column {
   id: number;
@@ -31,7 +32,7 @@ export interface UpdateCardDto {
 
 @Injectable({ providedIn: 'root' })
 export class KanbanService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -56,21 +57,18 @@ export class KanbanService {
   }
 
   updateCard(id: number, data: UpdateCardDto) {
-    return this.http.patch<Card>(`http://localhost:3000/cards/${id}`, data);
+    return this.http.patch<Card>(`${this.apiUrl}/cards/${id}`, data);
   }
 
   deleteCard(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/cards/${id}`);
   }
+
   updateManyOrders(cards: ReorderCardDto[]) {
-    return this.http.patch('http://localhost:3000/cards/reorder', { cards });
+    return this.http.patch(`${this.apiUrl}/cards/reorder`, { cards });
   }
 
   reorderCards(cards: { id: number; order: number; columnId: number }[]) {
-    // enviando no formato que o Nest espera
-    return this.http.patch<{ message: string }>(
-      `${this.apiUrl}/cards/reorder`,
-      { cards }, // <- wrapper "cards" obrigatório
-    );
+    return this.http.patch<{ message: string }>(`${this.apiUrl}/cards/reorder`, { cards });
   }
 }

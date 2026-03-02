@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://valinor-1.onrender.com/',
+  production: false,
+  apiUrl: 'http://localhost:3000',
 };

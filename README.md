@@ -160,6 +160,7 @@ ng test
 **Backend:**
 ```bash
 npm run test
+npm run test:e2e
 ```
 
 ---
@@ -195,8 +196,8 @@ Durante o desenvolvimento, alguns desafios técnicos exigiram atenção especial
 **Pedro Moraes**  
 Desenvolvedor Fullstack
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](#)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](#)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pedro-moraes-31526233a/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/PedroMoraes57)
 
 </div>
 

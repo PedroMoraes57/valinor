@@ -1,0 +1,31 @@
+<article class="card">
+  <header class="card-header">
+    <h4>{{ card.title }}</h4>
+    <div class="card-actions">
+      <button (click)="editCard()" [disabled]="isUpdating">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button (click)="deleteCard()" [disabled]="isDeleting">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+  </header>
+
+  @if (card.description) {
+    <p class="card-description">{{ card.description }}</p>
+  }
+</article>
+
+@if (showEditCardModal) {
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Editar Card</h3>
+      <input [(ngModel)]="editCardTitle" placeholder="Título" />
+      <textarea [(ngModel)]="editCardDescription" placeholder="Descrição (opcional)"></textarea>
+      <div class="modal-actions">
+        <button (click)="updateCard()" [disabled]="isUpdating">Salvar</button>
+        <button (click)="closeEditCardModal()">Cancelar</button>
+      </div>
+    </div>
+  </section>
+}

@@ -1,0 +1,262 @@
+/* ============================================================
+   BOARD COMPONENT — Kanban Modern UI v3
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* ---------- Board Wrapper ---------- */
+.board {
+  padding: 32px 36px 20px;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at 5% 10%, rgba(0, 84, 255, 0.04) 0%, transparent 45%),
+    radial-gradient(ellipse at 95% 90%, rgba(0, 84, 255, 0.03) 0%, transparent 45%),
+    linear-gradient(160deg, #f8faff 0%, #ffffff 60%, #f4f7ff 100%);
+  box-sizing: border-box;
+  color: #0a1628;
+}
+
+/* ---------- Board Header ---------- */
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid rgba(0, 84, 255, 0.1);
+}
+
+/* Título principal — grande e azul */
+.board-header h1,
+.board-header h2 {
+  margin: 0;
+  font-size: 45px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: #0054ff;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Botão "Nova Coluna" */
+.board-header button {
+  padding: 10px 22px;
+  background: #0054ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 84, 255, 0.35);
+  transition:
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.18s ease;
+}
+
+.board-header button:hover {
+  background: #3378ff;
+  box-shadow: 0 6px 22px rgba(0, 84, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.board-header button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 84, 255, 0.25);
+}
+
+/* ---------- Columns Container ---------- */
+.columns-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  flex: 1;
+  padding-bottom: 16px;
+  align-items: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 84, 255, 0.2) transparent;
+}
+
+.columns-container::-webkit-scrollbar {
+  height: 5px;
+}
+.columns-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.columns-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 84, 255, 0.2);
+  border-radius: 10px;
+}
+.columns-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 84, 255, 0.38);
+}
+
+/* ---------- Modal Overlay ---------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 22, 40, 0.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeOverlay 0.18s ease;
+}
+
+@keyframes fadeOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Modal Content — compacto ---------- */
+.modal-content {
+  background: #ffffff;
+  padding: 22px 24px 20px;
+  border-radius: 14px;
+  min-width: 280px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow:
+    0 12px 40px rgba(0, 84, 255, 0.14),
+    0 0 0 1px rgba(0, 84, 255, 0.09);
+  animation: popModal 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popModal {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0a1628;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 9px 12px;
+  margin: 6px 0;
+  box-sizing: border-box;
+  border: 1.5px solid rgba(0, 84, 255, 0.14);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  color: #0a1628;
+  background: #f5f8ff;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.modal-content input:focus {
+  border-color: #0054ff;
+  box-shadow: 0 0 0 3px rgba(0, 84, 255, 0.09);
+  background: #ffffff;
+}
+
+/* ---------- Modal Actions ---------- */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.modal-actions button {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* Cancelar — branco com borda */
+.modal-actions button:first-child {
+  background: #ffffff;
+  color: #4a5578;
+  border: 1.5px solid rgba(0, 84, 255, 0.2);
+}
+
+.modal-actions button:first-child:hover {
+  background: #f0f4ff;
+  border-color: rgba(0, 84, 255, 0.35);
+  color: #0054ff;
+}
+
+/* Criar / Confirmar — azul sólido */
+.modal-actions button:last-child {
+  background: #0054ff;
+  color: #ffffff;
+  box-shadow: 0 3px 12px rgba(0, 84, 255, 0.32);
+}
+
+.modal-actions button:last-child:hover {
+  background: #3378ff;
+  box-shadow: 0 5px 18px rgba(0, 84, 255, 0.42);
+  transform: translateY(-1px);
+}
+
+.modal-actions button:last-child:active {
+  transform: translateY(0);
+}
+
+/* Smartphones (≤600px) – colunas empilhadas */
+@media (max-width: 600px) {
+  .board {
+    padding: 16px 16px 20px;
+  }
+
+  .board-header h1,
+  .board-header h2 {
+    font-size: 32px;
+  }
+
+  .board-header button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .columns-container {
+    flex-direction: column; /* Uma abaixo da outra */
+    overflow-x: visible; /* Remove rolagem horizontal */
+    align-items: stretch; /* Colunas ocupam toda a largura */
+    gap: 16px; /* Espaço vertical entre colunas */
+  }
+}
+
+/* Tablets (601px – 1024px) – grid com quebra de linha */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .columns-container {
+    flex-wrap: wrap; /* Permite quebra para a linha de baixo */
+    overflow-x: visible; /* Remove rolagem horizontal */
+    justify-content: flex-start; /* Alinha à esquerda (pode ser center) */
+    gap: 20px; /* Mantém o espaçamento original */
+  }
+}

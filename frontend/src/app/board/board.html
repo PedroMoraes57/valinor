@@ -1,0 +1,37 @@
+<main class="board">
+  <header class="board-header">
+    <h1>Kanban Field Control</h1>
+    <button (click)="openNewColumnModal()" class="btn-primary">
+      <i class="fas fa-plus"></i> Nova Coluna
+    </button>
+  </header>
+
+  <section class="columns-container">
+    @for (col of columns; track col.id) {
+      <app-column
+        [column]="col"
+        [allColumns]="columns"
+        (columnDeleted)="onColumnDeleted($event)"
+        (columnUpdated)="onColumnUpdated($event)"
+        (cardCreated)="onCardCreated($event)"
+        (cardUpdated)="onCardUpdated($event)"
+        (cardDeleted)="onCardDeleted($event)"
+      ></app-column>
+    }
+  </section>
+</main>
+
+@if (showNewColumnModal) {
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Nova Coluna</h3>
+      <input [(ngModel)]="newColumnName" placeholder="Nome da coluna" />
+      <div class="modal-actions">
+        <button (click)="createColumn()" [disabled]="isCreatingColumn" class="btn-primary">
+          {{ isCreatingColumn ? 'Criando...' : 'Criar' }}
+        </button>
+        <button (click)="closeNewColumnModal()" class="btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </section>
+}

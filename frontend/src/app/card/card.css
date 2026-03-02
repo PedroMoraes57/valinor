@@ -1,0 +1,324 @@
+/* ============================================================
+   CARD COMPONENT — Kanban Modern UI v3
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* ---------- Card ---------- */
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 13px 14px;
+  margin-bottom: 8px;
+  box-shadow:
+    0 1px 4px rgba(0, 84, 255, 0.07),
+    0 0 0 1px rgba(0, 84, 255, 0.07);
+  cursor: grab;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  transition:
+    box-shadow 0.22s ease,
+    border 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra lateral azul no hover */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: #0054ff;
+  border-radius: 10px 0 0 10px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover {
+  box-shadow:
+    0 8px 24px rgba(0, 84, 255, 0.18),
+    0 0 0 2px rgba(0, 84, 255, 0.2);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+/* ---------- CDK Drag States ---------- */
+.cdk-drag-preview {
+  background: #ffffff !important;
+  border-radius: 10px;
+  box-shadow:
+    0 16px 48px rgba(0, 84, 255, 0.22),
+    0 0 0 2px #0054ff;
+  transform: scale(1.03) rotate(0.8deg);
+  opacity: 0.98;
+  cursor: grabbing;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.cdk-drag-placeholder {
+  background: rgba(0, 84, 255, 0.05) !important;
+  border: 2px dashed rgba(0, 84, 255, 0.25) !important;
+  border-radius: 10px;
+  box-shadow: none !important;
+  opacity: 0.6;
+  min-height: 50px;
+}
+
+.cdk-drag-animating {
+  transition: transform 220ms cubic-bezier(0, 0, 0.2, 1) !important;
+}
+
+/* ---------- Card Header ---------- */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a1628;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ---------- Card Actions ---------- */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .card-actions {
+  opacity: 1;
+}
+
+.card-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  font-size: 13px;
+  color: #0a1628;
+  margin-left: 2px;
+  transition:
+    opacity 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease,
+    color 0.2s ease;
+}
+
+.card-actions button:hover {
+  opacity: 1;
+  background: rgba(0, 84, 255, 0.07);
+  color: #0054ff;
+  transform: scale(1.12);
+}
+
+.card-actions button:active {
+  transform: scale(0.92);
+}
+
+/* ---------- Card Description ---------- */
+.card-description {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: #6b7a99;
+  line-height: 1.55;
+  font-family: 'DM Sans', sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 22, 40, 0.45);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeOverlay 0.18s ease;
+}
+
+@keyframes fadeOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 22px 24px 20px;
+  border-radius: 14px;
+  min-width: 280px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow:
+    0 12px 40px rgba(0, 84, 255, 0.14),
+    0 0 0 1px rgba(0, 84, 255, 0.09);
+  animation: popModal 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popModal {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0a1628;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 9px 12px;
+  margin: 6px 0;
+  box-sizing: border-box;
+  border: 1.5px solid rgba(0, 84, 255, 0.14);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  color: #0a1628;
+  background: #f5f8ff;
+  outline: none;
+  resize: vertical;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: #0054ff;
+  box-shadow: 0 0 0 3px rgba(0, 84, 255, 0.09);
+  background: #ffffff;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.modal-actions button {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* Cancelar — branco com borda */
+.modal-actions button:first-child {
+  background: #ffffff;
+  color: #4a5578;
+  border: 1.5px solid rgba(0, 84, 255, 0.2);
+}
+
+.modal-actions button:first-child:hover {
+  background: #f0f4ff;
+  border-color: rgba(0, 84, 255, 0.35);
+  color: #0054ff;
+}
+
+/* Criar — azul sólido */
+.modal-actions button:last-child {
+  background: #0054ff;
+  color: #ffffff;
+  box-shadow: 0 3px 12px rgba(0, 84, 255, 0.32);
+}
+
+.modal-actions button:last-child:hover {
+  background: #3378ff;
+  box-shadow: 0 5px 18px rgba(0, 84, 255, 0.42);
+  transform: translateY(-1px);
+}
+
+.modal-actions button:last-child:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 11px 12px;
+  }
+
+  .card-header h4 {
+    font-size: 13px;
+  }
+
+  .card-description {
+    font-size: 12px;
+  }
+
+  /* Modal mais compacto para telas pequenas */
+  .modal-content {
+    padding: 18px 20px 16px;
+    min-width: 240px;
+    max-width: 300px;
+  }
+
+  .modal-content h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  .modal-content input,
+  .modal-content textarea {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .modal-actions button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+}

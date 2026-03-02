@@ -1,0 +1,79 @@
+<section class="column">
+  <header class="column-header">
+    <h3>{{ column.name }}</h3>
+    <div class="column-actions">
+      <button
+        (click)="editColumn()"
+        [disabled]="isUpdatingColumn"
+        class="icon-btn"
+        title="Editar coluna"
+      >
+        <i class="fas fa-edit"></i>
+      </button>
+      <button
+        (click)="deleteColumn()"
+        [disabled]="isDeleting"
+        class="icon-btn"
+        title="Excluir coluna"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+  </header>
+
+  <section
+    class="cards-container"
+    cdkDropList
+    [id]="'column-' + column.id"
+    [cdkDropListData]="column.cards"
+    [cdkDropListConnectedTo]="connectedDropLists"
+    (cdkDropListDropped)="drop($event)"
+  >
+    @for (card of column.cards; track card.id) {
+      <div cdkDrag>
+        <app-card
+          [card]="card"
+          (cardUpdated)="onCardUpdated($event)"
+          (cardDeleted)="onCardDeleted($event)"
+        ></app-card>
+      </div>
+    }
+  </section>
+
+  <footer>
+    <button class="add-card-btn" (click)="openNewCardModal()" [disabled]="isCreatingCard">
+      {{ isCreatingCard ? 'Criando...' : '+ Adicionar card' }}
+    </button>
+  </footer>
+</section>
+
+@if (showEditColumnModal) {
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Editar Coluna</h3>
+      <input [(ngModel)]="editColumnName" placeholder="Nome da coluna" />
+      <div class="modal-actions">
+        <button (click)="updateColumn()" [disabled]="isUpdatingColumn" class="btn-primary">
+          Salvar
+        </button>
+        <button (click)="closeEditColumnModal()" class="btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </section>
+}
+
+@if (showNewCardModal) {
+  <section class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Novo Card</h3>
+      <input [(ngModel)]="newCardTitle" placeholder="Título" />
+      <textarea [(ngModel)]="newCardDescription" placeholder="Descrição (opcional)"></textarea>
+      <div class="modal-actions">
+        <button (click)="createCard()" [disabled]="isCreatingCard" class="btn-primary">
+          {{ isCreatingCard ? 'Criando...' : 'Criar' }}
+        </button>
+        <button (click)="closeNewCardModal()" class="btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </section>
+}

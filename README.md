@@ -10,7 +10,7 @@
 **Aplicação fullstack de Kanban desenvolvida como desafio técnico.**  
 Frontend em Angular · Backend em NestJS · Deploy na Vercel e Render.
 
-[🌐 Acessar App](https://kanbanfieldcontrol.vercel.app/) · [📖 Como Rodar](#️-como-rodar-localmente) · [👨‍💻 Autor](#-autor)
+[🌐 Acessar App](https://kanbanfieldcontrol.vercel.app/) · [📖 Como Rodar](#️-como-rodar-localmente) · [👨‍💻 Autor](#-autor-1)
 
 </div>
 
